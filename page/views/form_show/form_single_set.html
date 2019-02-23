@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="../../../assets/css/layui.css">
+    <link rel="stylesheet" href="../../../assets/css/view.css"/>
+    <title></title>
+</head>
+<body class="layui-view-body">
+    <div class="layui-content">
+        <div class="layui-page-header">
+            <div class="pagewrap">
+                <span class="layui-breadcrumb">
+                  <a href="">报表展示</a>
+                  <a href="form_single.html">新建报表</a>
+                  <a><cite>设置报表</cite></a>
+                </span>
+            </div>
+        </div>
+        <div id="pie" style="width: 600px;height:400px;"></div>
+    </div>
+    <script src="../../../assets/layui.all.js"></script>
+    <script src="../../../assets/js/echarts.min.js"></script>
+    <script>
+      var element = layui.element;
+
+      var myChart = echarts.init(document.getElementById('pie'));
+      option = {
+        title : {
+            text: '某站点用户访问来源',
+            subtext: '纯属虚构',
+            x:'center'
+        },
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            orient: 'vertical',
+            left: 'left',
+            data: ['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+        },
+        series : [
+            {
+                name: '访问来源',
+                type: 'pie',
+                radius : '55%',
+                center: ['50%', '50%'],
+                data:[
+                    {value:335, name:'直接访问'},
+                    {value:310, name:'邮件营销'},
+                    {value:234, name:'联盟广告'},
+                    {value:135, name:'视频广告'},
+                    {value:1548, name:'搜索引擎'}
+                ],
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }
+        ]
+    };
+    myChart.setOption(option);
+    </script>
+</body>
+</html>
