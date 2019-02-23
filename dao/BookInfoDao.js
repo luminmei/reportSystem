@@ -1,7 +1,7 @@
 var dbutil = require("./DBUtil");
 
 function queryBookInfoByPage(page, pageSize, success) {
-    var querySql = "select * from tb_bookinfo limit ?, ?";
+    var querySql = "select * from bookinfo limit ?, ?";
     // 偏移量
     var params = [page * pageSize, pageSize];
 
