@@ -23,12 +23,31 @@
             <div class="layui-card">
                 <div class="layui-card-body">
                     <div class="demoTable">
-                        图书名称：
-                        <div class="layui-inline">
-                          <input class="layui-input bookNameInp" name="id" id="demoReload" autocomplete="off">
+                      <div class="layui-form">
+                        <div class="layui-inline layui-form-item">
+                          <label class="layui-form-label">图书名称：</label>
+                          <div class="layui-input-block">
+                            <input class="layui-input bookNameInp" name="id" id="demoReload" autocomplete="off">
+                          </div>
                         </div>
-                        <button class="layui-btn search" data-type="reload">搜索</button>
+                        <div class="layui-inline layui-form-item">
+                          <label class="layui-form-label">图书分类：</label>
+                          <div class="layui-input-block">
+                            <select name="city" lay-verify="required">
+                              <option value=""></option>
+                              <option value="0">教育</option>
+                              <option value="1">小说</option>
+                              <option value="2">青春文学</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="layui-inline layui-form-item">
+                          <div class="layui-input-block">
+                            <button class="layui-btn search layui-bg-blue" data-type="reload">搜索</button>
+                          </div>
+                        </div>
                       </div>
+                    </div>
                     <table id="bookTable" lay-filter="bookTable"></table>
                     <div id="barDemo" style="display:none">
                       <a class="layui-btn layui-btn-primary layui-btn-xs layui-bg-orange" lay-event="detail">详情</a>
