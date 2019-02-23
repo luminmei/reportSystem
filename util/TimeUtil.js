@@ -1,4 +1,13 @@
+var moment = require("moment");
+
 function getNow () {
     return parseInt(Date.now() / 1000);
 }
-module.exports.getNow = getNow;
+function formatDate (time) {
+    return moment(time).format("YYYY-MM-DD")
+    // HH:mm:ss
+}
+module.exports = {
+    "getNow": getNow,
+    "formatDate": formatDate
+}

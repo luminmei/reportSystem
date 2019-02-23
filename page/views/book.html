@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../assets/css/layui.css">
+    <link rel="stylesheet" href="../assets/css/view.css"/>
+    <link rel="icon" href="/favicon.ico">
+    <title>订单</title>
+</head>
+<body class="layui-view-body">
+    <div class="layui-content">
+        <div class="layui-page-header">
+            <div class="pagewrap">
+                <span class="layui-breadcrumb">
+                  <a href="">数据表格</a>
+                  <a><cite>图书信息表</cite></a>
+                </span>
+            </div>
+        </div>
+        <div class="layui-row">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div class="demoTable">
+                        图书名称：
+                        <div class="layui-inline">
+                          <input class="layui-input bookNameInp" name="id" id="demoReload" autocomplete="off">
+                        </div>
+                        <button class="layui-btn search" data-type="reload">搜索</button>
+                      </div>
+                    <table id="bookTable" lay-filter="bookTable"></table>
+                    <div id="barDemo" style="display:none">
+                      <a class="layui-btn layui-btn-primary layui-btn-xs layui-bg-orange" lay-event="detail">详情</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../assets/layui.all.js"></script>
+    <script src="../../assets/js/ajax.js"></script>
+    <script>
+      (function () {
+        // 初始化
+        function init () {
+          this.bindEvent()
+          this.getTableList()
+        }
+        // 绑定事件
+        function bindEvent() {
+          //监听行工具事件
+          this.table.on('tool(bookTable)', function(obj){
+            if(obj.event === 'detail'){
+              console.log(obj.data)
+              window.id = obj.data.id
+              location.href = 'detail.html?id=' + obj.data.id
+            }
+          });
+          // 点击搜索按钮执行的函数
+          this.searchBtn.onclick = function () {
+            //执行重载
+            record.table.reload('bookTable', {
+              page: {
+                //重新从第 1 页开始
+                curr: 1
+              },
+              where: {
+                // 图书名称
+                bookName: record.bookNameInp.value
+              }
+            });
+          }
+        }
+        // 获取表格的数据
+        function getTableList() {
+          //展示已知数据
+          this.table.render({
+            elem: '#bookTable',
+            id: 'bookTable',
+            url: '/queryBookInfoByPage',
+            cols: [[ //标题栏
+              {type:'numbers',title:'索引',width: 50,align:'center'},
+              {field: 'bookTypeName', title:'图书类型',width: 100,align:'center'},
+              {field: 'bookName', title: '图书名称', width: 150,align:'center'},
+              {field: 'bookPress', title: '图书出版社', width: 180,align:'center'},
+              {field: 'bookPubDate', title: '出版日期', width: 150, sort: true,align:'center'},
+              {field: 'bookAuther', title: '作者', width: 150,align:'center'},
+              {field: 'bookMprice', title: '价格', width: 80, sort: true,align:'center'},
+              {fixed: 'right', title:'操作', toolbar: '#barDemo', width:80,align:'center'}
+            ]],
+            // 背景色
+            even: true, 
+            // 开启分页
+            page: {
+              limits:[5,10,15]
+            },
+            // 设置请求参数
+            request: {
+              pageName: 'page', //页码的参数名称，默认：page
+              limitName: 'pageSize' //每页数据量的参数名，默认：limit
+            },
+            // 配置返回值
+            parseData (res) {
+              // 解析价格
+              res.data.map(val => {
+                var temp = val
+                temp.bookMprice = temp.bookMprice.toFixed(2)
+                return res.data
+              })
+              return {
+                "code": 0, //解析接口状态
+                "msg": res.mag, //解析提示文本
+                "count": res.total, //解析数据长度
+                "data": res.data //解析数据列表
+              };
+            }
+          })
+        }
+        // 定义数据
+        let record = {
+          // 表格
+          'table': layui.table,
+          // 搜索按钮
+          'searchBtn': document.getElementsByClassName('search')[0],
+          // 图书名称
+          'bookNameInp': document.getElementsByClassName('bookNameInp')[0],
+          // 初始化函数
+          'init': init,
+          // 绑定事件函数
+          'bindEvent': bindEvent,
+          // 获取表格函数
+          'getTableList': getTableList
+        }
+        record.init()
+      }())
+    </script>
+</body>
+</html>
