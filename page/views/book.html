@@ -33,11 +33,7 @@
                         <div class="layui-inline layui-form-item">
                           <label class="layui-form-label">图书分类：</label>
                           <div class="layui-input-block">
-                            <select name="city" lay-verify="required">
-                              <option value=""></option>
-                              <option value="0">教育</option>
-                              <option value="1">小说</option>
-                              <option value="2">青春文学</option>
+                            <select name="city"  id="bookTypeSelect" lay-filter="bookTypeSelect">
                             </select>
                           </div>
                         </div>
@@ -64,30 +60,30 @@
         function init () {
           this.bindEvent()
           this.getTableList()
+          this.getBookTypeList()
         }
         // 绑定事件
         function bindEvent() {
           //监听行工具事件
-          this.table.on('tool(bookTable)', function(obj){
+          this.table.on('tool(bookTable)', (obj) => {
             if(obj.event === 'detail'){
-              console.log(obj.data)
               window.id = obj.data.id
-              location.href = 'detail.html?id=' + obj.data.id
+              location.href = 'bookDetail.html?id=' + obj.data.id
             }
           });
+          // 监听选择框的选择
+          this.form.on('select(bookTypeSelect)', ({elem, value,othis}) => {
+            record.searchTable()
+          }); 
           // 点击搜索按钮执行的函数
-          this.searchBtn.onclick = function () {
-            //执行重载
-            record.table.reload('bookTable', {
-              page: {
-                //重新从第 1 页开始
-                curr: 1
-              },
-              where: {
-                // 图书名称
-                bookName: record.bookNameInp.value
-              }
-            });
+          this.searchBtn.onclick = () => {
+            record.searchTable()
+          }
+          // 监听图书名称输入框的改变
+          this.bookNameInp.onkeyup = (event) => {
+            if (event.keyCode == "13") {
+              record.searchTable()
+            }
           }
         }
         // 获取表格的数据
@@ -96,7 +92,7 @@
           this.table.render({
             elem: '#bookTable',
             id: 'bookTable',
-            url: '/queryBookInfoByPage',
+            url: '/api/queryBookInfoByPage',
             cols: [[ //标题栏
               {type:'numbers',title:'索引',width: 50,align:'center'},
               {field: 'bookTypeName', title:'图书类型',width: 100,align:'center'},
@@ -135,20 +131,56 @@
             }
           })
         }
+        // 按条件搜索表格的数据
+        function searchTable () {
+          //执行重载
+          record.table.reload('bookTable', {
+            page: {
+              //重新从第 1 页开始
+              curr: 1
+            },
+            where: {
+              // 图书名称
+              bookName: record.bookNameInp.value,
+              bookTypeName: record.bookTypeSelect.value
+            }
+          });
+        }
+        // 获取多有的图书类型
+        function getBookTypeList () {
+          $ajax({
+            method: 'GET',
+            url: '/api/queryAllBookTypeInfo'
+          }).then((res) => {
+            var str = '<option value=""></option>'
+            res.data.forEach(ele => {
+              str += '<option value="'+ ele.bookTypeName +'"> '+ ele.bookTypeName +'</option>'
+            })
+            this.bookTypeSelect.innerHTML = str
+            this.form.render('select')
+          }).catch(() => {})
+        }
         // 定义数据
         let record = {
+          'form': layui.form,
           // 表格
           'table': layui.table,
           // 搜索按钮
           'searchBtn': document.getElementsByClassName('search')[0],
           // 图书名称
           'bookNameInp': document.getElementsByClassName('bookNameInp')[0],
+          // 图书类型选择框
+          "bookTypeSelect":document.getElementById('bookTypeSelect'),
           // 初始化函数
           'init': init,
           // 绑定事件函数
           'bindEvent': bindEvent,
           // 获取表格函数
-          'getTableList': getTableList
+          'getTableList': getTableList,
+          // 获取图书类型
+          'getBookTypeList': getBookTypeList,
+          // 按条件搜索数据
+          'searchTable': searchTable
         }
         record.init()
       }())

@@ -1,0 +1,14 @@
+1、分页查询图书信息
+get /api/queryBookInfoByPage
+参数：
+  page 当前页
+  pageSize  页大小
+
+2、查找所有图书的分类
+get /api/queryAllBookTypeInfo
+参数：无
+
+3、查询图书的详细信息
+get /api/queryBookDetailById
+参数：
+  id 图书的id

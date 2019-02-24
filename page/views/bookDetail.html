@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="../assets/css/layui.css">
+  <link rel="stylesheet" href="../assets/css/view.css"/>
+  <title>Document</title>
+  <style>
+    .bookimg {
+      float: left;
+      width:200px;
+      height:200px;
+    }
+    .money {
+      color:#f40;
+      font-weight: 700;
+      font-size:20px;
+    }
+    .nameColor {
+      color:#1a66b3;
+    }
+    .price_info {
+      background-color: #ebebeb;
+      padding: 20px 0;
+      line-height: 28px;
+      position: relative;
+      width: 630px;
+    }
+    .tag {
+      float: left;
+      border-left: 2px solid #ff2832;
+      padding: 0 20px 0 6px;
+      background: #e5e5e5;
+      height: 22px;
+      padding-bottom: 2px;
+      margin-bottom: -2px;
+      position: relative;
+      font: 14px/22px "Microsoft Yahei";
+      color: #323232;
+    }
+    .mar_right {
+      margin-right:15px;
+    }
+  </style>
+</head>
+<body class="layui-view-body">
+    <div class="layui-content">
+      <div class="layui-page-header">
+          <div class="pagewrap">
+              <span class="layui-breadcrumb">
+                <a href="">数据表格</a>
+                <a href="book.html">图书信息表</a>
+                <a><cite>图书详情</cite></a>
+              </span>
+          </div>
+      </div>
+      <div class="layui-row">
+          <div class="layui-card">
+              <div class="layui-card-body" id="bookView">
+                <!-- <div class="layui-form">
+                  <img src="/图书/100教育/算法导论.jpg" alt="" class="bookimg">
+                  <br>
+                  <div class="layui-inline layui-form-item">
+                    <h1>算法导论</h1>
+                  </div>
+                  <br>
+                  <div class="layui-inline layui-form-item">
+                    <label>出版社：</label>
+                    <span class="mar_right">
+                      <label class="nameColor">机械工业出版社</label>
+                    </span>
+                  </div>
+                  <div class="layui-inline layui-form-item">
+                    <label>出版时间：</label>
+                    <span class="mar_right">
+                      <label class="nameColor">2013-01-01</label>
+                    </span>
+                  </div>
+                  <div class="layui-inline layui-form-item">
+                    <label>类型：</label>
+                    <span>
+                      <label class="nameColor">教育</label>
+                    </span>
+                  </div>
+                  <br>
+                  <div class="layui-inline layui-form-item price_info">
+                    <label >零售价：</label>
+                    <span class="mar_right">
+                      <label class="money">￥126.00</label>
+                    </span>
+                  </div>
+                  <br>
+                  <div class="layui-inline layui-form-item">
+                      <label >包装：</label>
+                      <span class="mar_right">
+                        <label>平装</label>
+                      </span>
+                    </div>
+                    <div class="layui-inline layui-form-item">
+                      <label >开本：</label>
+                      <span class="mar_right">
+                        <label>16开</label>
+                      </span>
+                    </div>
+                    <div class="layui-inline layui-form-item">
+                      <label>页数：</label>
+                      <span>
+                        <label>320</label>
+                      </span>
+                    </div>
+                </div>
+                <div class="layui-card" style="background:#FFFFBB">
+                  <div class="layui-card-body"> 
+                    <div class="tag">图书简介</div>
+                    <br>  
+                    <div class="layui-form-item">
+                      <article>
+                        <span>在有关算法的书中，有一些叙述非常严谨，但不够全面；另一些涉及了大量的题材，但又缺乏严谨性。本书将严谨性和全面性融为一体，深入讨论各类算法，并着力使这些算法的设计和分析能为各个层次的读者接受。全书各章自成体系，可以作为独立的学习单元；算法以英语和伪代码的形式描述，具备初步程序设计经验的人就能看懂；说明和解释力求浅显易懂，不失深度和数学严谨性。</span>
+                      </article>
+                    </div>
+                    <div class="tag">库存信息</div>
+                    <br>          
+                    <div class="layui-inline layui-form-item">
+                      <label >库存量：</label>
+                      <span class="mar_right">
+                        <label>100</label>
+                      </span>
+                    </div>             
+                    <div class="layui-inline layui-form-item">
+                      <label >进货价：</label>
+                      <span class="mar_right">
+                        <label class="mar_right">￥120.00</label>
+                      </span>
+                    </div>
+                    <div class="layui-inline layui-form-item">
+                      <label>入库时间：</label>
+                      <span>
+                        <label>2018-01-01</label>
+                      </span>
+                    </div>
+                </div> -->
+              </div>
+            </div>
+          </div>
+      </div>
+  </div>
+  <script src="../assets/layui.all.js"></script>
+  <script src="../../assets/js/ajax.js"></script>
+  <script id="bookInfo" type="text/html">
+    {{#  layui.each(d.list, function(index, item){ }}
+    <div class="layui-form">
+        <img src="/图书/{{item.bookTypeName}}/{{item.bookName}}.jpg" alt="" class="bookimg">
+        <br>
+        <div class="layui-inline layui-form-item">
+          <h1>{{item.bookName}}</h1>
+        </div>
+        <br>
+        <div class="layui-inline layui-form-item">
+            <label>作者：</label>
+            <span class="mar_right">
+              <label class="nameColor">{{item.bookAuther}}</label>
+            </span>
+          </div>
+        <div class="layui-inline layui-form-item">
+          <label>出版社：</label>
+          <span class="mar_right">
+            <label class="nameColor">{{item.bookPress}}</label>
+          </span>
+        </div>
+        <div class="layui-inline layui-form-item">
+          <label>出版时间：</label>
+          <span class="mar_right">
+            <label class="nameColor">{{item.bookPubDate}}</label>
+          </span>
+        </div>
+        <div class="layui-inline layui-form-item">
+          <label>类型：</label>
+          <span>
+            <label class="nameColor">{{item.bookTypeName}}</label>
+          </span>
+        </div>
+        <br>
+        <div class="layui-inline layui-form-item price_info">
+          <label >零售价：</label>
+          <span class="mar_right">
+            <label class="money">￥{{item.bookMprice}}</label>
+          </span>
+        </div>
+        <br>
+        <div class="layui-inline layui-form-item">
+            <label >包装：</label>
+            <span class="mar_right">
+              <label>{{item.bookPackStyle}}</label>
+            </span>
+          </div>
+          <div class="layui-inline layui-form-item">
+            <label >开本：</label>
+            <span class="mar_right">
+              <label>{{item.bookSize}}</label>
+            </span>
+          </div>
+          <div class="layui-inline layui-form-item">
+            <label>页数：</label>
+            <span>
+              <label>{{item.bookPages}}</label>
+            </span>
+          </div>
+      </div>
+      <div class="layui-card" style="background:#FFFFBB">
+        <div class="layui-card-body"> 
+          <div class="tag">图书简介</div>
+          <br>  
+          <div class="layui-form-item">
+            <article>
+              <span>{{item.bookOuteline}}</span>
+            </article>
+          </div>
+          <div class="tag">库存信息</div>
+          <br>          
+          <div class="layui-inline layui-form-item">
+            <label >库存量：</label>
+            <span class="mar_right">
+              <label>{{item.bookStoreMount}}</label>
+            </span>
+          </div>             
+          <div class="layui-inline layui-form-item">
+            <label >进货价：</label>
+            <span class="mar_right">
+              <label class="mar_right">￥{{item.bookInprice}}</label>
+            </span>
+          </div>
+          <div class="layui-inline layui-form-item">
+            <label>入库时间：</label>
+            <span>
+              <label>{{item.bookStoreTime}}</label>
+            </span>
+          </div>
+      </div>
+      {{#  }); }}
+      {{#  if(d.list.length === 0){ }}
+        无数据
+      {{#  } }}
+  </script>
+  <script>
+    (function () {
+      function init () {
+        this.getBookDetail()
+      }
+      // 获取图书的详细信息
+      function getBookDetail () {
+        $ajax({
+          method: 'GET',
+          url: '/api/queryBookDetailById',
+          data: {
+            id: this.BookId
+          }
+        }).then((res) => {
+          // 渲染模板
+          console.log('执行')
+          var getTpl = bookInfo.innerHTML;
+          var view = document.getElementById('bookView')
+          var data = {
+            list: [res.data]
+          }
+          record.laytpl(getTpl).render(data, function(html){
+            view.innerHTML = html
+          })
+        }).catch(() => {})
+      }
+      let record = {
+        'init': init,
+        'laytpl': layui.laytpl,
+        // 获取图书的id
+        'BookId': location.href.split('?')[1].split('=')[1],
+        // 获取图书的详细信息
+        'getBookDetail': getBookDetail
+      }
+      record.init()
+    }())
+  </script>
+</body>
+</html>

@@ -5,7 +5,9 @@ var app = new express();
 
 app.use(express.static("./page/"));
 
-app.get("/queryBookInfoByPage", loader.get("/queryBookInfoByPage"));
+app.get("/api/queryBookInfoByPage", loader.get("/api/queryBookInfoByPage"));
+app.get("/api/queryAllBookTypeInfo", loader.get("/api/queryAllBookTypeInfo"));
+app.get("/api/queryBookDetailById", loader.get("/api/queryBookDetailById"));
 
 app.listen(globalConfig.port, function () {
     console.log("服务已启动");
