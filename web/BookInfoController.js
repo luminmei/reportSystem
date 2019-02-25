@@ -11,8 +11,8 @@ function queryBookInfoByPage(request, response) {
         var arr = result;
         arr.map(val => {
            var temp = val;
-           val.bookPubDate = timeUtil.formatDate(val.bookPubDate);
-           val.bookStoreTime = timeUtil.formatDate(val.bookStoreTime);
+            temp.bookPubDate = timeUtil.formatDate(val.bookPubDate);
+            temp.bookStoreTime = timeUtil.formatDate(val.bookStoreTime);
            return temp
         });
         bookInfoDao.queryBookInfoOfTotal(params.bookName , params.bookTypeName ,function (res) {

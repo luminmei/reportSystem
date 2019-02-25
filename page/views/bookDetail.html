@@ -151,7 +151,7 @@
   <script id="bookInfo" type="text/html">
     {{#  layui.each(d.list, function(index, item){ }}
     <div class="layui-form">
-        <img src="/图书/{{item.bookTypeName}}/{{item.bookName}}.jpg" alt="" class="bookimg">
+        <img src="/book/{{item.bookTypeName}}/{{item.bookName}}.jpg" alt="" class="bookimg">
         <br>
         <div class="layui-inline layui-form-item">
           <h1>{{item.bookName}}</h1>
@@ -258,7 +258,6 @@
           }
         }).then((res) => {
           // 渲染模板
-          console.log('执行')
           var getTpl = bookInfo.innerHTML;
           var view = document.getElementById('bookView')
           var data = {

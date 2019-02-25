@@ -3,6 +3,8 @@ get /api/queryBookInfoByPage
 参数：
   page 当前页
   pageSize  页大小
+  bookName 图书名称（模糊查找）
+  bookTypeName 图书类型
 
 2、查找所有图书的分类
 get /api/queryAllBookTypeInfo

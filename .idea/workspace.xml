@@ -2,15 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="25f34034-378f-497b-b356-a0f22555b50e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dao/BookTypeInfoDao.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/BookTypeInfoController.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dao/CustomerInfoDao.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/CustomerInfoController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao/BookInfoDao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao/BookInfoDao.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/book.txt" beforeDir="false" afterPath="$PROJECT_DIR$/doc/book.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/page/assets/js/ajax.js" beforeDir="false" afterPath="$PROJECT_DIR$/page/assets/js/ajax.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/page/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/page/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/page/views/book.html" beforeDir="false" afterPath="$PROJECT_DIR$/page/views/book.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/page/views/detail.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/page/views/bookDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/page/views/bookDetail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/page/views/customer.html" beforeDir="false" afterPath="$PROJECT_DIR$/page/views/customer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/page/图书/小说/三体.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/page/图书/小说/人间失格.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/page/图书/小说/失乐园.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/page/图书/小说/摆渡人.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/page/图书/教育/java编程思想.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/page/图书/教育/普通心理学.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/page/图书/教育/概率论与数理统计.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/page/图书/教育/算法导论.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/page/图书/教育/管理学.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/page/图书/教育/经济学原理.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/page/图书/文艺/宋词三百首.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/page/图书/文艺/敢于孤独的勇气.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/page/图书/文艺/最美唐诗.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/page/图书/青春文学/一切所遇欢迎光临.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/page/图书/青春文学/知否.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/web/BookInfoController.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/BookInfoController.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -25,41 +40,19 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dao/BookInfoDao.js">
+        <entry file="file://$PROJECT_DIR$/web/CustomerInfoController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="63" column="22" selection-start-line="63" selection-start-column="22" selection-end-line="63" selection-end-column="22" />
-              <folding>
-                <element signature="n#!!block;n#queryBookInfoByPage#0" />
-                <element signature="n#!!block;n#queryBookInfoOfTotal#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/BookInfoController.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="38" column="65" selection-start-line="38" selection-start-column="65" selection-end-line="38" selection-end-column="65" />
+            <state relative-caret-position="296">
+              <caret line="16" column="68" selection-start-line="16" selection-start-column="56" selection-end-line="16" selection-end-column="68" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/index.js">
+        <entry file="file://$PROJECT_DIR$/dao/CustomerInfoDao.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="25">
-              <caret line="13" column="3" lean-forward="true" selection-start-line="13" selection-start-column="3" selection-end-line="13" selection-end-column="3" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/BookTypeInfoController.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="8" column="82" selection-start-line="8" selection-start-column="82" selection-end-line="8" selection-end-column="82" />
+            <state relative-caret-position="750">
+              <caret line="30" column="30" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -89,8 +82,11 @@
         <option value="$PROJECT_DIR$/dao/BookTypeInfoDao.js" />
         <option value="$PROJECT_DIR$/web/BookTypeInfoController.js" />
         <option value="$PROJECT_DIR$/dao/BookInfoDao.js" />
-        <option value="$PROJECT_DIR$/web/BookInfoController.js" />
+        <option value="$PROJECT_DIR$/dao/CustomerDao.js" />
         <option value="$PROJECT_DIR$/index.js" />
+        <option value="$PROJECT_DIR$/web/BookInfoController.js" />
+        <option value="$PROJECT_DIR$/web/CustomerInfoController.js" />
+        <option value="$PROJECT_DIR$/dao/CustomerInfoDao.js" />
       </list>
     </option>
   </component>
@@ -198,7 +194,9 @@
       <option name="presentableId" value="Default" />
       <updated>1550908426803</updated>
       <workItem from="1550908428324" duration="7136000" />
-      <workItem from="1550994614901" duration="8397000" />
+      <workItem from="1550994614901" duration="9089000" />
+      <workItem from="1551077651972" duration="1361000" />
+      <workItem from="1551082433016" duration="2632000" />
     </task>
     <task id="LOCAL-00001" summary="开始">
       <created>1550909618388</created>
@@ -211,10 +209,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15533000" />
+    <option name="totallyTimeSpent" value="20218000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
@@ -222,7 +220,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.795082" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.12295082" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -304,33 +302,48 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/BookTypeInfoController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="8" column="82" selection-start-line="8" selection-start-column="82" selection-end-line="8" selection-end-column="82" />
+        <state relative-caret-position="100">
+          <caret line="7" column="14" selection-start-line="6" selection-end-line="15" selection-end-column="27" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dao/BookInfoDao.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="63" column="22" selection-start-line="63" selection-start-column="22" selection-end-line="63" selection-end-column="22" />
+        <state relative-caret-position="100">
+          <caret line="31" column="11" lean-forward="true" selection-start-line="31" selection-start-column="11" selection-end-line="31" selection-end-column="11" />
           <folding>
             <element signature="n#!!block;n#queryBookInfoByPage#0" />
             <element signature="n#!!block;n#queryBookInfoOfTotal#0" />
+            <element signature="n#!!block;n#queryBookDetailById#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/BookInfoController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="38" column="65" selection-start-line="38" selection-start-column="65" selection-end-line="38" selection-end-column="65" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="13" column="3" lean-forward="true" selection-start-line="13" selection-start-column="3" selection-end-line="13" selection-end-column="3" />
+        <state relative-caret-position="350">
+          <caret line="14" column="3" lean-forward="true" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/BookInfoController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="13" column="54" selection-start-line="13" selection-start-column="51" selection-end-line="13" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/CustomerInfoController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="16" column="68" selection-start-line="16" selection-start-column="56" selection-end-line="16" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dao/CustomerInfoDao.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="750">
+          <caret line="30" column="30" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
         </state>
       </provider>
     </entry>

@@ -21,6 +21,22 @@
       <div class="layui-row">
           <div class="layui-card">
               <div class="layui-card-body">
+                  <div class="demoTable">
+                    <div class="layui-form">
+                      <div class="layui-inline layui-form-item">
+                        <label class="layui-form-label">用户名：</label>
+                        <div class="layui-input-block">
+                          <input class="layui-input customerNameInp" name="id" id="demoReload" autocomplete="off">
+                        </div>
+                      </div>
+                      <div class="layui-inline layui-form-item">
+                        <div class="layui-input-block">
+                          <button class="layui-btn search layui-bg-blue" data-type="reload">搜索</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <table id="customerTable" lay-filter="customerTable"></table>
               </div>
           </div>
       </div>
@@ -28,6 +44,99 @@
   <script src="../assets/layui.all.js"></script>
   <script src="../../assets/js/ajax.js"></script>
   <script>
+    (function () {
+      var a 
+        // 初始化
+        function init () {
+          this.bindEvent()
+          this.getTableList()
+        }
+        // 绑定事件
+        function bindEvent() {
+          // 点击搜索按钮执行的函数
+          this.searchBtn.onclick = () => {
+            record.searchTable()
+          }
+          // 监听图书名称输入框的改变
+          this.customerNameInp.onkeyup = (event) => {
+            if (event.keyCode == "13") {
+              record.searchTable()
+            }
+          }
+        }
+        // 获取表格的数据
+        function getTableList() {
+          //展示已知数据
+          a = this.table.render({
+            elem: '#customerTable',
+            id: 'customerTable',
+            url: '/api/queryCustomerByPage',
+            toolbar: true,
+            cols: [[ //标题栏
+              {type:'numbers',title:'索引',width: 50,align:'center'},
+              {field: 'customerName', title:'用户名',width: 100,align:'center'},
+              {field: 'customerTrueName', title: '真实姓名', width: 150,align:'center'},
+              {field: 'customerSex', title: '性别', width: 80,align:'center'},
+              {field: 'customerTel', title: '电话', width: 150,align:'center'},
+              {field: 'customerAddr', title: '地址', width: 100,align:'center'},
+              {field: 'customerRegTime', title: '注册时间', width: 120, sort: true,align:'center'}
+            ]],
+            // 背景色
+            // even: true, 
+            // 开启分页
+            page: {
+              limits:[5,10,15]
+            },
+            // 设置请求参数
+            request: {
+              pageName: 'page', //页码的参数名称，默认：page
+              limitName: 'pageSize' //每页数据量的参数名，默认：limit
+            },
+            // 配置返回值
+            parseData (res) {
+              return {
+                "code": 0, //解析接口状态
+                "msg": res.msg, //解析提示文本
+                "count": res.total, //解析数据长度
+                "data": res.data //解析数据列表
+              };
+            }
+          })
+        }
+        // 按条件搜索表格的数据
+        function searchTable () {
+          //执行重载
+          record.table.reload('customerTable', {
+            page: {
+              //重新从第 1 页开始
+              curr: 1
+            },
+            where: {
+              // 用户名
+              customerName: record.customerNameInp.value
+            }
+          });
+        }
+      // 定义数据
+      let record = {
+          'form': layui.form,
+          // 表格
+          'table': layui.table,
+          // 搜索按钮
+          'searchBtn': document.getElementsByClassName('search')[0],
+          // 用户名称
+          'customerNameInp': document.getElementsByClassName('customerNameInp')[0],
+          // 初始化函数
+          'init': init,
+          // 绑定事件函数
+          'bindEvent': bindEvent,
+          // 获取表格函数
+          'getTableList': getTableList,
+          // 按条件搜索数据
+          'searchTable': searchTable
+        }
+        record.init()
+    }())
   </script>
 </body>
 </html>

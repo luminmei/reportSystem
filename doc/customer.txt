@@ -1,0 +1,6 @@
+1、分页查询客户信息
+get /api/queryCustomerByPage
+参数：
+  page 当前页
+  pageSize  页大小
+  customerName 用户名
