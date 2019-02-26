@@ -1,0 +1,11 @@
+1、分页查询订单信息
+get /api/queryCustomerByPage
+参数：
+  page 当前页
+  pageSize 页大小
+  customerName 用户名
+
+2、查寻订单详细信息
+get api/queryOrderBoolDetailByOrderCode
+参数：
+  orderCode 订单编号

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="../assets/css/layui.css">
+  <link rel="stylesheet" href="../assets/css/view.css"/>
+  <title>Document</title>
+  <style>
+    .orderimg {
+      float: left;
+      width:100px;
+      height:100px;
+    }
+    .nameColor {
+      color:#1a66b3;
+    }
+    .price_info {
+      background-color: #ebebeb;
+      padding: 20px 0;
+      line-height: 28px;
+      position: relative;
+      width: 630px;
+    }
+    .mar_right {
+      margin-right:15px;
+    }
+  </style>
+</head>
+<body class="layui-view-body">
+    <div class="layui-content">
+      <div class="layui-page-header">
+          <div class="pagewrap">
+              <span class="layui-breadcrumb">
+                <a href="">数据表格</a>
+                <a href="orderInfo.html">订单表</a>
+                <a><cite>订单详情</cite></a>
+              </span>
+          </div>
+      </div>
+      <div class="layui-row">
+          <div class="layui-card">
+              <div class="layui-card-body">
+                  <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+                    <legend>订单信息</legend>
+                  </fieldset>
+                  <div id="orderList"></div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <script src="../assets/layui.all.js"></script>
+  <script src="../../assets/js/ajax.js"></script>
+  <script id="orderDetail" type="text/html">
+    {{#  layui.each(d.list, function(index, item){ }}
+      <blockquote  class="layui-elem-quote layui-quote-nm">
+        <div class="layui-form">
+          <div class="layui-inline layui-form-item">
+              <div class="layui-container">
+                <div class="layui-row">
+                  <div class="layui-col-md2">
+                    <img src="/book/{{item.book.bookTypeName}}/{{item.book.bookName}}.jpg" alt="" class="orderimg">
+                  </div>
+                  <div class="layui-col-md7">
+                    <div class="layui-inline layui-form-item">
+                      <h2>{{item.book.bookName}}</h2>
+                    </div>
+                    <br>
+                    <div class="layui-inline layui-form-item">
+                      <label>作者：</label>
+                      <span class="mar_right">
+                        <label class="nameColor">{{item.book.bookAuther}}</label>
+                      </span>
+                    </div>
+                    <div class="layui-inline layui-form-item">
+                      <label>出版社：</label>
+                      <span class="mar_right">
+                        <label class="nameColor">{{item.book.bookPress}}</label>
+                      </span>
+                    </div>
+                    <div class="layui-inline layui-form-item">
+                      <label>出版时间：</label>
+                      <span class="mar_right">
+                        <label class="nameColor">{{item.book.bookPubDate}}</label>
+                      </span>
+                    </div>
+                    <div class="layui-inline layui-form-item">
+                      <label>类型：</label>
+                      <span>
+                        <label class="nameColor">{{item.book.bookTypeName}}</label>
+                      </span>
+                    </div>
+                    <div class="layui-inline layui-form-item">
+                      <label >零售价：</label>
+                      <span class="mar_right">
+                        <label class="nameColor">￥{{item.book.bookMprice}}</label>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="layui-col-md3">
+                    <div class="layui-inline layui-form-item">
+                      <label >数量：</label>
+                      <span class="mar_right">
+                        <label >{{item.bookCount}}</label>
+                      </span>
+                    </div>
+                    <div class="layui-inline layui-form-item">
+                      <label >总价：</label>
+                      <span class="mar_right">
+                        <label style="color:#f40">￥{{item.bookTotalPrice}}</label>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </blockquote> 
+    {{#  }); }}
+    {{#  if(d.list.length === 0){ }}
+      无数据
+    {{#  } }}
+  </script>
+  <script>
+    (function () {
+      function init () {
+        this.getOrderDetail()
+      }
+      // 获取订单的详细信息
+      function getOrderDetail () {
+        $ajax({
+          method: 'GET',
+          url: '/api/queryOrderBoolDetailByOrderCode',
+          data: {
+            orderCode: this.orderCode
+          }
+        }).then((res) => {
+          // 渲染模板
+          var getTpl = orderDetail.innerHTML;
+          var view = document.getElementById('orderList')
+          var data = {
+            list: res.data
+          }
+          record.laytpl(getTpl).render(data, function(html){
+            view.innerHTML = html
+          })
+        }).catch(() => {})
+      }
+      let record = {
+        'init': init,
+        'laytpl': layui.laytpl,
+        // 获取订单的单号
+        'orderCode': location.href.split('?')[1].split('=')[1],
+        // 获取订单的详细信息
+        'getOrderDetail': getOrderDetail
+      }
+      record.init()
+    }())
+  </script>
+</body>
+</html>

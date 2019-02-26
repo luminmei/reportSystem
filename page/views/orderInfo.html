@@ -14,7 +14,7 @@
           <div class="pagewrap">
               <span class="layui-breadcrumb">
                 <a href="">数据表格</a>
-                <a><cite>客户表</cite></a>
+                <a><cite>订单表</cite></a>
               </span>
           </div>
       </div>
@@ -22,21 +22,24 @@
           <div class="layui-card">
               <div class="layui-card-body">
                   <div class="demoTable">
-                    <div class="layui-form">
-                      <div class="layui-inline layui-form-item">
-                        <label class="layui-form-label">用户名：</label>
-                        <div class="layui-input-block">
-                          <input class="layui-input customerNameInp" name="id" id="demoReload" autocomplete="off">
+                      <div class="layui-form">
+                        <div class="layui-inline layui-form-item">
+                          <label class="layui-form-label">订单编号：</label>
+                          <div class="layui-input-block">
+                            <input class="layui-input orderCodeInp" name="id" id="demoReload" autocomplete="off">
+                          </div>
                         </div>
-                      </div>
-                      <div class="layui-inline layui-form-item">
-                        <div class="layui-input-block">
-                          <button class="layui-btn search layui-bg-blue" data-type="reload">搜索</button>
+                        <div class="layui-inline layui-form-item">
+                          <div class="layui-input-block">
+                            <button class="layui-btn search layui-bg-blue" data-type="reload">搜索</button>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <table id="customerTable" lay-filter="customerTable"></table> 
+                    <table id="orderInfoTable" lay-filter="orderInfoTable"></table>
+                    <div id="barDemo" style="display:none">
+                      <a class="layui-btn layui-btn-primary layui-btn-xs layui-bg-orange" lay-event="detail">详情</a>
+                    </div>
               </div>
           </div>
       </div>
@@ -53,12 +56,18 @@
         }
         // 绑定事件
         function bindEvent() {
+          //监听行工具事件
+          this.table.on('tool(orderInfoTable)', (obj) => {
+            if(obj.event === 'detail'){
+              location.href = 'orderInfoDetail.html?orderCode=' + obj.data.orderCode
+            }
+          });
           // 点击搜索按钮执行的函数
           this.searchBtn.onclick = () => {
             record.searchTable()
           }
           // 监听图书名称输入框的改变
-          this.customerNameInp.onkeyup = (event) => {
+          this.orderCodeInp.onkeyup = (event) => {
             if (event.keyCode == "13") {
               record.searchTable()
             }
@@ -68,18 +77,22 @@
         function getTableList() {
           //展示已知数据
           a = this.table.render({
-            elem: '#customerTable',
-            id: 'customerTable',
-            url: '/api/queryCustomerByPage',
+            elem: '#orderInfoTable',
+            id: 'orderInfoTable',
+            url: '/api/queryOrderInfoByPage',
+            totalRow: true, //开启合计行
             toolbar: true,
             cols: [[ //标题栏
-              {type:'numbers',title:'索引',width: 50,align:'center'},
-              {field: 'customerName', title:'用户名',width: 100,align:'center'},
-              {field: 'customerTrueName', title: '真实姓名', width: 150,align:'center'},
-              {field: 'customerSex', title: '性别', width: 80,align:'center'},
-              {field: 'customerTel', title: '电话', width: 150,align:'center'},
-              {field: 'customerAddr', title: '地址', width: 100,align:'center'},
-              {field: 'customerRegTime', title: '注册时间', width: 120, sort: true,align:'center'}
+              {type:'numbers',title:'索引',width: 50,align:'center',totalRowText: '合计：'},
+              {field: 'orderCode', title:'订单编号',width: 100,align:'center'},
+              {field: 'orderDate', title: '订单日期', width: 150, sort: true,align:'center'},
+              {field: 'totalPrice', title: '订单总价',totalRow:true, width: 120,align:'center'},
+              {field: 'payMethod', title: '支付方式', width: 100,align:'center'},
+              {field: 'postMethod', title: '取货方式', width: 150,align:'center'},
+              {field: 'receverName', title: '收件人姓名', width: 120,align:'center'},
+              {field: 'receverTel', title: '收件人电话', width: 120,align:'center'},
+              {field: 'receverAddr', title: '收件地址', width: 250,align:'center'},
+              {fixed: 'right', title:'操作', toolbar: '#barDemo', width:80,align:'center'}
             ]],
             // 背景色
             // even: true, 
@@ -94,6 +107,12 @@
             },
             // 配置返回值
             parseData (res) {
+               // 解析价格
+               res.data.map(val => {
+                var temp = val
+                temp.totalPrice = temp.totalPrice.toFixed(2)
+                return res.data
+              })
               return {
                 "code": 0, //解析接口状态
                 "msg": res.msg, //解析提示文本
@@ -106,14 +125,14 @@
         // 按条件搜索表格的数据
         function searchTable () {
           //执行重载
-          record.table.reload('customerTable', {
+          record.table.reload('orderInfoTable', {
             page: {
               //重新从第 1 页开始
               curr: 1
             },
             where: {
               // 用户名
-              customerName: record.customerNameInp.value
+              orderCode: record.orderCodeInp.value
             }
           });
         }
@@ -124,8 +143,8 @@
           'table': layui.table,
           // 搜索按钮
           'searchBtn': document.getElementsByClassName('search')[0],
-          // 用户名称
-          'customerNameInp': document.getElementsByClassName('customerNameInp')[0],
+          // 订单编码
+          'orderCodeInp': document.getElementsByClassName('orderCodeInp')[0],
           // 初始化函数
           'init': init,
           // 绑定事件函数

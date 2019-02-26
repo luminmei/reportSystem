@@ -1,6 +1,6 @@
 var dbutil = require("./DBUtil");
 // 分页查找订单信息
-function queryOrderByPage(page, pageSize, orderCode,  success) {
+function queryOrderInfoByPage(page, pageSize, orderCode,  success) {
     var querySql = "";
     var parmas = [];
     if (orderCode) {
@@ -23,7 +23,7 @@ function queryOrderByPage(page, pageSize, orderCode,  success) {
     connection.end()
 }
 // 计算总的客户数量
-function queryOrderOfTotal(orderCode ,success) {
+function queryOrderInfoOfTotal(orderCode ,success) {
     var querySql = "";
     var parmas = [];
     if (orderCode) {
@@ -47,6 +47,6 @@ function queryOrderOfTotal(orderCode ,success) {
 }
 
 module.exports = {
-    "queryOrderByPage": queryOrderByPage,
-    "queryOrderOfTotal": queryOrderOfTotal
+    "queryOrderInfoByPage": queryOrderInfoByPage,
+    "queryOrderInfoOfTotal": queryOrderInfoOfTotal
 };

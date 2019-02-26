@@ -67,7 +67,6 @@
           //监听行工具事件
           this.table.on('tool(bookTable)', (obj) => {
             if(obj.event === 'detail'){
-              window.id = obj.data.id
               location.href = 'bookDetail.html?id=' + obj.data.id
             }
           });
