@@ -14,6 +14,23 @@ function queryAllBookTypeInfo (success) {
     });
     connection.end()
 }
+
+function queryBookTypeById (id, success) {
+    var querySql = "select * from booktypeinfo where id = ?";
+    var params = [id];
+    var connection = dbutil.createConnection();
+    connection.connect();
+    connection.query(querySql, params, function (error, result) {
+        if (error == null) {
+            success(result)
+        } else {
+            console.log(error)
+        }
+    });
+    connection.end()
+}
+
 module.exports = {
-    "queryAllBookTypeInfo": queryAllBookTypeInfo
+    "queryAllBookTypeInfo": queryAllBookTypeInfo,
+    "queryBookTypeById": queryBookTypeById
 };

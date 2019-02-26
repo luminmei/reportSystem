@@ -14,3 +14,7 @@ get /api/queryAllBookTypeInfo
 get /api/queryBookDetailById
 参数：
   id 图书的id
+
+4、按照图书分类进行统计
+get /api/queryBookCountOfBookType
+参数 无
