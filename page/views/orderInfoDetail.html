@@ -131,7 +131,7 @@
       function getOrderDetail () {
         $ajax({
           method: 'GET',
-          url: '/api/queryOrderBoolDetailByOrderCode',
+          url: '/api/queryOrderBookDetailByOrderCode',
           data: {
             orderCode: this.orderCode
           }
@@ -141,7 +141,7 @@
           var view = document.getElementById('orderList')
           var data = {
             list: res.data
-          }
+          };
           record.laytpl(getTpl).render(data, function(html){
             view.innerHTML = html
           })
@@ -154,7 +154,7 @@
         'orderCode': location.href.split('?')[1].split('=')[1],
         // 获取订单的详细信息
         'getOrderDetail': getOrderDetail
-      }
+      };
       record.init()
     }())
   </script>

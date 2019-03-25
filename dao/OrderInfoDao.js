@@ -22,7 +22,7 @@ function queryOrderInfoByPage(page, pageSize, orderCode,  success) {
     });
     connection.end()
 }
-// 计算总的客户数量
+// 计算总的订单数量
 function queryOrderInfoOfTotal(orderCode ,success) {
     var querySql = "";
     var parmas = [];

@@ -27,9 +27,9 @@ function queryOrderInfoByPage(request, response) {
 path.set("/api/queryOrderInfoByPage", queryOrderInfoByPage);
 
 // 查询订单的详细信息
-function queryOrderBoolDetailByOrderCode (request, response) {
+function queryOrderBookDetailByOrderCode (request, response) {
     var params = url.parse(request.url, true).query;
-    orderBookDetailDao.queryOrderBoolDetailByOrderCode(params.orderCode ,function (result) {
+    orderBookDetailDao.queryOrderBookDetailByOrderCode(params.orderCode ,function (result) {
         result.forEach(val => {
             val.book = null;
         });
@@ -51,5 +51,30 @@ function queryOrderBoolDetailByOrderCode (request, response) {
         })
     })
 }
-path.set("/api/queryOrderBoolDetailByOrderCode", queryOrderBoolDetailByOrderCode);
+path.set("/api/queryOrderBookDetailByOrderCode", queryOrderBookDetailByOrderCode);
+
+function queryOrderBookByIdOfCountAll (request, response) {
+    orderBookDetailDao.queryOrderBookByIdOfCountAll(10, function (result) {
+        result.forEach(val => {
+            val.book = null;
+        });
+        result.forEach((val, index) => {
+            bookInfoDao.queryBookDetailById(val.bookId, function (res) {
+                val.book = res[0];
+                if (index == result.length -1) {
+                    result.map(val => {
+                        var temp = val;
+                        temp.book && (temp.book.bookPubDate = timeUtil.formatDate(val.book.bookPubDate));
+                        temp.book && (temp.book.bookStoreTime = timeUtil.formatDate(val.book.bookStoreTime));
+                        return temp
+                    });
+                    response.writeHead(200, {"Content-Type": "application/json;charset=UTF-8"});
+                    response.write(respUtil.writeResult("success", "查询成功", result));
+                    response.end();
+                }
+            })
+        })
+    })
+}
+path.set("/api/queryOrderBookByIdOfCountAll", queryOrderBookByIdOfCountAll);
 module.exports.path = path;
