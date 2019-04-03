@@ -2,14 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="25f34034-378f-497b-b356-a0f22555b50e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/page/views/report/bestSeller.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/page/assets/report/scatter-map.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/page/views/report/salesArea.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao/OrderBookDetailDao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao/OrderBookDetailDao.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dao/OrderInfoDao.js" beforeDir="false" afterPath="$PROJECT_DIR$/dao/OrderInfoDao.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/page/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/page/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/page/views/form_show/form_single.html" beforeDir="false" afterPath="$PROJECT_DIR$/page/views/form_show/form_single.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/page/views/orderInfoDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/page/views/orderInfoDetail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/page/views/report/bestSeller.html" beforeDir="false" afterPath="$PROJECT_DIR$/page/views/report/bestSeller.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/page/views/report/bookType.html" beforeDir="false" afterPath="$PROJECT_DIR$/page/views/report/bookType.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/OrderController.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/OrderController.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -24,19 +24,60 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/page/views/report/salesArea.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="212">
+              <caret line="18" column="29" lean-forward="true" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="235">
+              <caret line="13" column="22" lean-forward="true" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/page/assets/report/randomTag.js">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/page/assets/report/scatter-map.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="550">
+              <caret line="22" column="25" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/page/assets/report/pie-simple.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="585">
+              <caret line="45" column="9" selection-start-line="45" selection-end-line="46" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/page/views/report/bestSeller.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="27" column="32" lean-forward="true" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
+            <state relative-caret-position="425">
+              <caret line="83" column="14" selection-start-line="81" selection-start-column="4" selection-end-line="86" selection-end-column="14" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/page/views/form_show/form_single.html">
+        <entry file="file://$PROJECT_DIR$/page/views/report/bookType.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="80" column="43" selection-start-line="80" selection-start-column="43" selection-end-line="80" selection-end-column="43" />
+            <state relative-caret-position="300">
+              <caret line="123" column="15" selection-start-line="123" selection-start-column="15" selection-end-line="123" selection-end-column="15" />
             </state>
           </provider>
         </entry>
@@ -49,6 +90,11 @@
         <option value="JavaScript File" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <dirStrings>
+      <dir>D:\学习资料\毕业设计\开始\毕业设计\reportSystem\page\assets\report</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -73,20 +119,24 @@
         <option value="$PROJECT_DIR$/dao/BookTypeInfoDao.js" />
         <option value="$PROJECT_DIR$/web/BookTypeInfoController.js" />
         <option value="$PROJECT_DIR$/page/home.js" />
-        <option value="$PROJECT_DIR$/page/index.html" />
         <option value="$PROJECT_DIR$/page/views/orderInfoDetail.html" />
-        <option value="$PROJECT_DIR$/index.js" />
-        <option value="$PROJECT_DIR$/dao/OrderInfoDao.js" />
         <option value="$PROJECT_DIR$/dao/OrderBookDetailDao.js" />
-        <option value="$PROJECT_DIR$/page/views/report/bestSeller.html" />
-        <option value="$PROJECT_DIR$/web/OrderController.js" />
         <option value="$PROJECT_DIR$/page/views/form_show/form_single.html" />
+        <option value="$PROJECT_DIR$/page/views/report/bestSeller.html" />
+        <option value="$PROJECT_DIR$/page/index.html" />
+        <option value="$PROJECT_DIR$/dao/OrderInfoDao.js" />
+        <option value="$PROJECT_DIR$/web/OrderController.js" />
+        <option value="$PROJECT_DIR$/index.js" />
+        <option value="$PROJECT_DIR$/page/assets/js/china.js" />
+        <option value="$PROJECT_DIR$/page/views/report/salesArea.html" />
+        <option value="$PROJECT_DIR$/page/assets/report/scatter-map.js" />
+        <option value="$PROJECT_DIR$/page/views/report/bookType.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="132" />
-    <option name="y" value="71" />
+    <option name="x" value="49" />
+    <option name="y" value="271" />
     <option name="width" value="1170" />
     <option name="height" value="629" />
   </component>
@@ -127,20 +177,20 @@
               <item name="reportSystem" type="462c0819:PsiDirectoryNode" />
               <item name="page" type="462c0819:PsiDirectoryNode" />
               <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="images" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="reportSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="reportSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="page" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="report" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="reportSystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="reportSystem" type="462c0819:PsiDirectoryNode" />
               <item name="page" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="reportSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="reportSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="page" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="form_show" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="reportSystem" type="b2602c69:ProjectViewProjectNode" />
@@ -148,11 +198,6 @@
               <item name="page" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="report" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="reportSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="reportSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -169,14 +214,15 @@
     <property name="settings.editor.selected.configurable" value="settings.nodejs" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\学习资料\毕业设计\开始\毕业设计\reportSystem\page\assets\js" />
+      <recent name="D:\学习资料\毕业设计\开始\毕业设计\reportSystem" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\学习资料\毕业设计\开始\毕业设计\reportSystem" />
       <recent name="D:\学习资料\毕业设计\开始\毕业设计\reportSystem\page" />
       <recent name="D:\学习资料\毕业设计\开始\毕业设计\reportSystem\util" />
       <recent name="D:\学习资料\毕业设计\开始\毕业设计\reportSystem\dao" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\学习资料\毕业设计\开始\毕业设计\reportSystem" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -201,7 +247,7 @@
     <configuration name="OrderController.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/web/OrderController.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
-    <configuration name="TimeUtil.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/util/TimeUtil.js" working-dir="$PROJECT_DIR$">
+    <configuration name="OrderInfoDao.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/dao/OrderInfoDao.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
     <configuration name="index.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/index.js" working-dir="$PROJECT_DIR$">
@@ -210,10 +256,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Node.js.index.js" />
+        <item itemvalue="Node.js.OrderInfoDao.js" />
         <item itemvalue="Node.js.OrderBookDetailDao.js" />
         <item itemvalue="Node.js.OrderController.js" />
         <item itemvalue="Node.js.BookTypeMappingDao.js" />
-        <item itemvalue="Node.js.TimeUtil.js" />
       </list>
     </recent_temporary>
   </component>
@@ -234,7 +280,9 @@
       <workItem from="1551165451573" duration="4481000" />
       <workItem from="1553084147631" duration="689000" />
       <workItem from="1553428139227" duration="7398000" />
-      <workItem from="1553516445833" duration="1268000" />
+      <workItem from="1553516445833" duration="6164000" />
+      <workItem from="1553861194604" duration="1705000" />
+      <workItem from="1554294359205" duration="7155000" />
     </task>
     <task id="LOCAL-00001" summary="开始">
       <created>1550909618388</created>
@@ -243,11 +291,18 @@
       <option name="project" value="LOCAL" />
       <updated>1550909618388</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="添加轮播图">
+      <created>1553517756716</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1553517756716</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40979000" />
+    <option name="totallyTimeSpent" value="54735000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -258,7 +313,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.40983605" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.35737705" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -296,7 +351,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="开始" />
-    <option name="LAST_COMMIT_MESSAGE" value="开始" />
+    <MESSAGE value="添加轮播图" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加轮播图" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/page/page/views/form_set/color_set.html" />
@@ -369,13 +425,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/page/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="49" column="29" lean-forward="true" selection-start-line="49" selection-start-column="29" selection-end-line="49" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/page/assets/css/view.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2540">
@@ -418,31 +467,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/page/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dao/CustomerInfoDao.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="6" column="68" lean-forward="true" selection-start-line="6" selection-start-column="68" selection-end-line="6" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dao/OrderInfoDao.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="24" column="9" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/page/views/report/bookType.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="80" column="9" lean-forward="true" selection-start-line="80" selection-start-column="9" selection-end-line="80" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -458,38 +486,111 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dao/OrderBookDetailDao.js">
+    <entry file="file://$PROJECT_DIR$/page/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="58" column="7" lean-forward="true" selection-start-line="58" selection-start-column="7" selection-end-line="58" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/OrderController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="67" column="38" selection-start-line="67" selection-start-column="38" selection-end-line="67" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="7" column="33" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/page/views/report/bestSeller.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="27" column="32" lean-forward="true" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
+        <state relative-caret-position="112">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/page/views/form_show/form_single.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="80" column="43" selection-start-line="80" selection-start-column="43" selection-end-line="80" selection-end-column="43" />
+        <state relative-caret-position="2475">
+          <caret line="99" column="32" selection-start-line="99" selection-start-column="32" selection-end-line="99" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/page/views/form_show/form_single_set.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="8" column="7" lean-forward="true" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/page/assets/report/pie-roseType.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="18" column="29" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/page/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1284">
+          <caret line="56" column="70" selection-start-line="56" selection-start-column="70" selection-end-line="56" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dao/OrderBookDetailDao.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="48" column="23" selection-start-line="48" selection-start-column="20" selection-end-line="48" selection-end-column="164" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dao/OrderInfoDao.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="152" column="32" selection-start-line="152" selection-start-column="5" selection-end-line="152" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/OrderController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="335">
+          <caret line="135" column="1" lean-forward="true" selection-start-line="135" selection-start-column="1" selection-end-line="135" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/page/assets/report/randomTag.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/page/assets/report/pie-simple.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="585">
+          <caret line="45" column="9" selection-start-line="45" selection-end-line="46" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/page/assets/js/china.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="13" selection-start-column="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/page/views/report/bestSeller.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="83" column="14" selection-start-line="81" selection-start-column="4" selection-end-line="86" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="13" column="22" lean-forward="true" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/page/views/report/salesArea.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="18" column="29" lean-forward="true" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/page/assets/report/scatter-map.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="22" column="25" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/page/views/report/bookType.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="123" column="15" selection-start-line="123" selection-start-column="15" selection-end-line="123" selection-end-column="15" />
         </state>
       </provider>
     </entry>

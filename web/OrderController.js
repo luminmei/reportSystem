@@ -77,4 +77,63 @@ function queryOrderBookByIdOfCountAll (request, response) {
     })
 }
 path.set("/api/queryOrderBookByIdOfCountAll", queryOrderBookByIdOfCountAll);
+
+// 按月份进行查询
+function queryOrderInfoByMonth (request, response) {
+    orderDao.queryOrderInfoByMonth(function (res) {
+        response.writeHead(200, {"Content-Type": "application/json;charset=UTF-8"});
+        response.write(respUtil.writeResult("success", "查询成功", res));
+        response.end();
+    })
+}
+
+path.set("/api/queryOrderInfoByMonth", queryOrderInfoByMonth);
+
+// 按支付方式进行查询 查询数量
+function queryOrderInfoByPayMethod (request, response) {
+    orderDao.queryOrderInfoByPayMethod(function (res) {
+        response.writeHead(200, {"Content-Type": "application/json;charset=UTF-8"});
+        response.write(respUtil.writeResult("success", "查询成功", res));
+        response.end();
+    })
+}
+path.set("/api/queryOrderInfoByPayMethod", queryOrderInfoByPayMethod);
+// 按支付方式进行查询 查询金额
+function queryOrderInfoByPayMethodOfMoney (request, response) {
+    orderDao.queryOrderInfoByPayMethodOfMoney(function (res) {
+        response.writeHead(200, {"Content-Type": "application/json;charset=UTF-8"});
+        response.write(respUtil.writeResult("success", "查询成功", res));
+        response.end();
+    })
+}
+path.set("/api/queryOrderInfoByPayMethodOfMoney", queryOrderInfoByPayMethodOfMoney);
+
+
+function queryOrderInfoByPostMethod (request, response) {
+    orderDao.queryOrderInfoByPostMethod(function (res) {
+        response.writeHead(200, {"Content-Type": "application/json;charset=UTF-8"});
+        response.write(respUtil.writeResult("success", "查询成功", res));
+        response.end();
+    })
+}
+path.set("/api/queryOrderInfoByPostMethod", queryOrderInfoByPostMethod);
+
+function queryOrderInfoByRecCity (request, response) {
+    orderDao.queryOrderInfoByRecCity(function (res) {
+        response.writeHead(200, {"Content-Type": "application/json;charset=UTF-8"});
+        response.write(respUtil.writeResult("success", "查询成功", res));
+        response.end();
+    })
+}
+path.set("/api/queryOrderInfoByRecCity", queryOrderInfoByRecCity);
+
+function queryOrderInfoByRecProvince (request, response) {
+    orderDao.queryOrderInfoByRecProvince(function (res) {
+        response.writeHead(200, {"Content-Type": "application/json;charset=UTF-8"});
+        response.write(respUtil.writeResult("success", "查询成功", res));
+        response.end();
+    })
+}
+path.set("/api/queryOrderInfoByRecProvince", queryOrderInfoByRecProvince);
+
 module.exports.path = path;

@@ -121,7 +121,7 @@
               temp.name = val.bookTypeName
               temp.value = val.total
               record.pieData.push(temp)
-            })
+            });
             // 绘制饼状图
             pieRoseType(record.pie, record.pieData, '图书类型占比')
             // pieSimple(dom, arr, '图书类型占比')
