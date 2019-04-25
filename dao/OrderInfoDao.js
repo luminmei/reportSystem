@@ -47,7 +47,7 @@ function queryOrderInfoOfTotal(orderCode ,success) {
 }
 // 按月查询订单情况
 function queryOrderInfoByMonth (success) {
-    var   querySql = "select DATE_FORMAT(orderDate,'%c') as month,sum(totalPrice) as totalmoney from orderinfo group by DATE_FORMAT(orderDate,'%Y-%c')";
+    var   querySql = "select DATE_FORMAT(orderDate,'%c') as month,sum(expressFee) as post,(sum(totalPrice) - sum(primeCost)) as base,sum(totalPrice) as sales,(sum(totalPrice) - sum(primeCost)) / sum(totalPrice) as rate from orderinfo group by DATE_FORMAT(orderDate,'%Y-%c') order by cast(`month` as signed integer)";
     var   params = [];
 
     var connection = dbutil.createConnection();
@@ -61,10 +61,9 @@ function queryOrderInfoByMonth (success) {
     });
     connection.end()
 }
-
 // 根据支付方式进行统计 （占比）
 function queryOrderInfoByPayMethod (success) {
-    var   querySql = "select payMethod,count(*) as total from orderinfo group by payMethod";
+    var   querySql = "select payMethod,count(*) as totalNum,sum(totalPrice) as totalPrice from orderinfo group by payMethod";
     var   params = [];
     var connection = dbutil.createConnection();
     connection.connect();
@@ -77,21 +76,7 @@ function queryOrderInfoByPayMethod (success) {
     });
     connection.end()
 }
-// 根据支付方式进行统计 （金额）
-function queryOrderInfoByPayMethodOfMoney (success) {
-    var   querySql = "select payMethod,sum(totalPrice) as total from orderinfo group by payMethod";
-    var   params = [];
-    var connection = dbutil.createConnection();
-    connection.connect();
-    connection.query(querySql, params, function (error, result) {
-        if (error == null) {
-            success(result);
-        } else {
-            console.log(error)
-        }
-    });
-    connection.end()
-}
+
 // 根据取货方式进行统计
 function queryOrderInfoByPostMethod (success) {
     var   querySql = "select postMethod,count(*) as total from orderinfo group by postMethod";
@@ -129,8 +114,25 @@ function queryOrderInfoByRecCity(success) {
 // 根据省份进行统计，统计出销售额
 function queryOrderInfoByRecProvince(success) {
     var querySql = "";
-    querySql = "select recProvince,sum(expressFee) as post,(sum(totalPrice) - sum(primeCost)) as base,sum(totalPrice) as sales,(sum(totalPrice) - sum(primeCost)) / sum(totalPrice) as rate from orderinfo  group by recCity order by sum(totalPrice) desc";
+    querySql = "select recProvince,sum(expressFee) as post,(sum(totalPrice) - sum(primeCost)) as base,sum(totalPrice) as sales,(sum(totalPrice) - sum(primeCost)) / sum(totalPrice) as rate from orderinfo  group by recProvince   order by sum(totalPrice) desc";
     var params = [];
+    var connection = dbutil.createConnection();
+    connection.connect();
+    connection.query(querySql, params, function (error, result) {
+        if (error == null) {
+            success(result);
+        } else {
+            console.log(error)
+        }
+    });
+    connection.end()
+}
+
+// 按日查询今日订单数和金额
+function queryOrderByDay (date, success) {
+    var   querySql = "select count(*) as total,sum(totalPrice) as totalmoney,orderDate from orderinfo group by DATE_FORMAT(orderDate,'%Y-%m-%d') having orderDate = ?";
+    var   params = [date];
+
     var connection = dbutil.createConnection();
     connection.connect();
     connection.query(querySql, params, function (error, result) {
@@ -148,7 +150,7 @@ module.exports = {
     "queryOrderInfoByMonth": queryOrderInfoByMonth,
     "queryOrderInfoByPayMethod": queryOrderInfoByPayMethod,
     "queryOrderInfoByPostMethod": queryOrderInfoByPostMethod,
-    "queryOrderInfoByPayMethodOfMoney": queryOrderInfoByPayMethodOfMoney,
     "queryOrderInfoByRecCity": queryOrderInfoByRecCity,
-    "queryOrderInfoByRecProvince": queryOrderInfoByRecProvince
+    "queryOrderInfoByRecProvince": queryOrderInfoByRecProvince,
+    "queryOrderByDay": queryOrderByDay
 };

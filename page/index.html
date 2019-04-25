@@ -21,9 +21,9 @@
             <!-- 右上角 -->
             <ul class="layui-nav layui-layout-right">
                 <li class="layui-nav-item">
-                    <a href="javascript:;">您好，小陆</a>
+                    <a href="javascript:;">您好，<span id="username"></span></a>
                     <dl class="layui-nav-child">
-                        <dd><a href="login.html">退出</a></dd>
+                        <dd><a href="login.html" id="quit">退出</a></dd>
                     </dl>
                 </li>
             </ul>
@@ -33,35 +33,45 @@
             <div class="layui-side-scroll">
                 <div class="custom-logo">
                     <img src="assets/images/logo.png" alt=""/>
-                    <h1>报表</h1>
+                    <!--<h1>报表</h1>-->
                 </div>
                 <ul id="Nav" class="layui-nav layui-nav-tree">
-                    <!-- <li class="layui-nav-item">
-                        <a href="javascript:;">
-                            <i class="layui-icon">&#xe609;</i>
-                            <em>报表展示</em>
-                        </a>
-                        <dl class="layui-nav-child">
-                            <dd><a href="views/statistics.html">统计</a></dd>
-                        </dl>
-                        <dl class="layui-nav-child">
-                          <dd><a href="views/form_show/form_single.html">新建图表</a></dd>
-                      </dl>
-                    </li> -->
+                   <!--<li class="layui-nav-item">-->
+                        <!--<a href="javascript:;">-->
+                            <!--<i class="layui-icon">&#xe609;</i>-->
+                            <!--<em>报表展示</em>-->
+                        <!--</a>-->
+                        <!--<dl class="layui-nav-child">-->
+                            <!--<dd><a href="views/statistics.html">统计</a></dd>-->
+                        <!--</dl>-->
+                        <!--<dl class="layui-nav-child">-->
+                          <!--<dd><a href="views/form_show/form_single.html">新建图表</a></dd>-->
+                      <!--</dl>-->
+                    <!--</li>-->
                     <li class="layui-nav-item">
                        <a href="javascript:;">
                           <i class="layui-icon">&#xe629;</i>
-                          <em>报表</em>
+                          <em>统计报表</em>
                        </a>
                         <dl class="layui-nav-child">
-                            <dd><a href="views/report/salesArea.html">销售额分布</a></dd>
+                            <dd><a href="views/report/realTimeData.html">今日统计</a></dd>
                         </dl>
-                       <dl class="layui-nav-child">
-                          <dd><a href="views/report/bestSeller.html">图书畅销榜</a></dd>
-                       </dl>
-                       <dl class="layui-nav-child">
-                          <dd><a href="views/report/bookType.html">图书分类</a></dd>
-                       </dl>
+                        <dl class="layui-nav-child">
+                            <dd><a href="views/report/salseByYear.html">销售额统计</a></dd>
+                        </dl>
+
+                        <dl class="layui-nav-child">
+                            <dd><a href="views/report/salesArea.html">销售地区分布统计</a></dd>
+                        </dl>
+                        <dl class="layui-nav-child">
+                            <dd><a href="views/report/bestSeller.html">图书畅销统计</a></dd>
+                        </dl>
+                        <dl class="layui-nav-child">
+                            <dd><a href="views/report/bookType.html">图书分类统计</a></dd>
+                        </dl>
+                        <dl class="layui-nav-child">
+                            <dd><a href="views/report/modeOfPayment.html">支付方式统计</a></dd>
+                        </dl>
                     </li>
                     <li class="layui-nav-item">
                         <a href="javascript:;">
@@ -92,5 +102,12 @@
     </div>
     <script src="assets/layui.js"></script>
     <script src="index.js" data-main="home"></script>
+    <script>
+        var oUser = document.getElementById("username");
+
+        var userinfo = JSON.parse(window.localStorage.getItem('userinfo') || {})
+        oUser.innerHTML = userinfo.username
+
+    </script>
 </body>
 </html>

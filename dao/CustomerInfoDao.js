@@ -45,8 +45,24 @@ function queryCustomerInfoOfTotal(customerName ,success) {
     });
     connection.end()
 }
+// 按日查询客户数量
+function queryCustomerByDay (date, success) {
+    var   querySql = "select count(*) as total,customerRegTime from customerinfo group by DATE_FORMAT(customerRegTime,'%Y-%m-%d') having customerRegTime = ?";
+    var   params = [date];
 
+    var connection = dbutil.createConnection();
+    connection.connect();
+    connection.query(querySql, params, function (error, result) {
+        if (error == null) {
+            success(result);
+        } else {
+            console.log(error)
+        }
+    });
+    connection.end()
+}
 module.exports = {
     "queryCustomerByPage": queryCustomerByPage,
-    "queryCustomerInfoOfTotal": queryCustomerInfoOfTotal
+    "queryCustomerInfoOfTotal": queryCustomerInfoOfTotal,
+    "queryCustomerByDay": queryCustomerByDay
 };

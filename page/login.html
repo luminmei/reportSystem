@@ -11,23 +11,73 @@
 </head>
 <body class="login-wrap">
     <div class="login-container">
-        <form class="login-form">
+        <div class="login-form">
             <div class="input-group">
-                <input type="text" id="username" class="input-field">
+                <input type="text" name="username" class="input-field" id="username">
                 <label for="username" class="input-label">
                     <span class="label-title">用户名</span>
                 </label>
             </div>
             <div class="input-group">
-                <input type="password" id="password" class="input-field">
+                <input type="password" name="password" class="input-field" id="password">
                 <label for="password" class="input-label">
                     <span class="label-title">密码</span>
                 </label>
             </div>
-            <button type="button" class="login-button">登录<i class="ai ai-enter"></i></button>
-        </form>
+            <button class="login-button" id="comfirm">登录<i class="ai ai-enter"></i></button>
+        </div>
     </div>
 </body>
 <script src="assets/layui.js"></script>
 <script src="index.js" data-main="login"></script>
+<script src="../../assets/js/ajax.js"></script>
+<script>
+    (function () {
+        // 初始化
+        function init () {
+            this.bindEvent()
+        }
+        // 绑定事件
+        function bindEvent() {
+            var oComfirm = document.getElementById("comfirm");
+            oComfirm.onclick = () => {
+                this.login()
+            }
+        }
+        function login () {
+            var username = document.getElementById("username").value || "";
+            var password = document.getElementById("password").value || "";
+
+            $ajax({
+                method: 'POST',
+                url: "/login",
+                data: {
+                    username: username,
+                    password: password
+                }
+            }).then((res) => {
+                if (res.status == 'success') {
+                    window.localStorage.setItem('userinfo', JSON.stringify(res.data));
+                    window.location.href = '/index.html'
+                } else {
+                    layui.use('layer', function(){
+                        var layer = layui.layer;
+
+                        layer.msg(res.msg);
+                    });
+                }
+            })
+        }
+        // 定义数据
+        let record = {
+            'form': layui.form,
+            // 初始化函数
+            'init': init,
+            // 绑定事件函数
+            'bindEvent': bindEvent,
+            "login": login
+        }
+        record.init()
+    }())
+</script>
 </html>

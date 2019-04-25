@@ -8,8 +8,16 @@
     <link rel="stylesheet" href="../../assets/css/view.css"/>
     <title>Document</title>
     <style>
+        li {
+            list-style: none;
+        }
         .wrapper {
+            width:100%;
             padding:2%;
+            display: flex;
+            justify-content: space-around;
+            box-sizing: border-box;
+            flex-wrap: wrap;
         }
         #map_wrap {
             position:relative;
@@ -17,6 +25,37 @@
             height:400px;
             display:inline-block;
             overflow: hidden;
+        }
+        .table_city_wrap {
+            position:relative;
+            width:488px;
+        }
+        #table_city {
+            width:100%;
+        }
+        .province_title {
+            margin: 40px 0;
+            border-bottom:1px solid #aaa;
+            padding-bottom:15px;
+        }
+        #province_list {
+            display: flex;
+            box-sizing: border-box;
+            flex-wrap: wrap;
+        }
+        #province_list > li {
+            padding:15px;
+            border-radius: 5%;
+            display: inline-block;
+            box-shadow: 2px 2px 15px #eee;
+            border:1px solid #eee;
+            width:195px;
+            height:130px;
+            margin:20px 8px;
+        }
+        .sales {
+            margin:15px 0;
+            color:#f40;
         }
     </style>
 </head>
@@ -26,7 +65,7 @@
         <div class="pagewrap">
               <span class="layui-breadcrumb">
                 <a href="">报表</a>
-                <a><cite>销售额分布</cite></a>
+                <a><cite>销售地区分布</cite></a>
               </span>
         </div>
     </div>
@@ -35,6 +74,16 @@
             <div class="layui-card-body">
                 <div class="wrapper">
                     <div id="map_wrap"></div>
+                    <div class="table_city_wrap">
+                        <h3>销售额TOP 8 城市</h3>
+                        <div id="table_city"></div>
+                    </div>
+                    <div>
+                        <h2 class="province_title">
+                            销售额TOP 4 省份</h2>
+                        <ul id="province_list"></ul>
+                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -45,6 +94,31 @@
 <script src="../../../assets/js/echarts.min.js"></script>
 <script src="../../../assets/js/china.js"></script>
 <script src="../../../assets/report/scatter-map.js"></script>
+
+<!--给列添加颜色的代码-->
+<script type="text/html" id="salesTpl">
+    <span style="color: #F581B1;">{{ d.sales }}</span>
+</script>
+<!--渲染销售额省份的代码-->
+<!-- 模板代码 -->
+<script id="province_list_tpl" type="text/html">
+
+    {{#  layui.each(d.list, function(index, item){ }}
+    <li>
+        <h1 style="color:#666">{{ item.recProvince }}</h1>
+        <h2 class="sales">{{"$" + item.sales}}</h2>
+        <div class="layui-progress layui-progress-big"  lay-filter="demo">
+            <div class="layui-progress-bar" lay-percent="0%" >{{item.rate}}</div>
+        </div>
+        <h3>
+            <span style="color:#aaa">{{ "利润率："+item.rate}}</span>
+        </h3>
+    </li>
+    {{#  }); }}
+    {{#  if(d.list.length === 0){ }}
+    无数据
+    {{#  } }}
+</script>
 <script>
     (function () {
         function init () {
@@ -59,6 +133,7 @@
                 method: 'GET',
                 url: "/api/queryOrderInfoByRecCity"
             }).then((res) => {
+                console.log(res)
                 var data = [];
                     res.data.forEach((item) => {
                     var temp = {};
@@ -67,22 +142,85 @@
                     data.push(temp)
                 });
                 this.cityData = data;
-                this.showMap(data)
+                this.showMap(data);
+                this.renderTable()
             })
+        }
+        function renderTable () {
+            this.table.render({
+                elem: '#table_city'
+                ,url:'/api/queryOrderInfoByRecCity'
+                ,cellMinWidth: 80//全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                ,cols: [[
+                    {field:'recCity', width:80, title: '城市',align:'center'}
+                    ,{field:'recProvince', width:80, title: '省份',align:'center'}
+                    ,{field:'sales', width:80, title: '销售额', sort: true,align:'center',templet: '#salesTpl'}
+                    ,{field:'base', width:80, title: '利润额', sort: true,align:'center'}
+                    ,{field:'post',width: 80, title: '运费', sort: true,align:'center'}
+                    ,{field:'rate',width: 80, title: '利润率', sort: true,align:'center'}
+                ]],
+                // 配置返回值
+                parseData (res) {
+                    // 解析价格
+                    res.data.map(val => {
+                        var temp = val;
+                        temp.sales = temp.sales.toFixed(2);
+                        temp.base = temp.base.toFixed(2);
+                        temp.post = temp.post.toFixed(2);
+                        temp.rate = (temp.rate * 100).toFixed(2) + "%";
+                        return res.data
+                    });
+                    res.data.splice(8);
+                    return {
+                        "code": 0, //解析接口状态
+                        "msg": res.msg, //解析提示文本
+                        "data": res.data //解析数据列表
+                    };
+                }
+            });
         }
         function getProvinceData () {
             $ajax({
                 method: 'GET',
                 url: "/api/queryOrderInfoByRecProvince"
             }).then((res) => {
-                console.log(res)
+                console.log(res);
+                this.showProvinceList(res)
             })
         }
         function showMap (data) {
             scatterMap(chinaJson,this.map,data,"全国销售额分布")
         }
+        function showProvinceList (res) {
+            var list = res.data.slice(0,4);
+            list.map(val => {
+                var temp = val;
+                temp.sales = temp.sales.toFixed(2);
+                temp.rate = Math.floor(temp.rate * 100) + "%";
+
+                return res.data
+            });
+            var data = {
+                "list": list
+            };
+            var getTpl = province_list_tpl.innerHTML;
+            var view = document.getElementById('province_list');
+            this.laytpl(getTpl).render(data, function(html){
+                view.innerHTML = html;
+            });
+            var arr = document.getElementsByClassName('layui-progress-bar');
+            var colorList = ["#FFB800", "#FF5722", "#01AAED", "#5FB878"];
+            [...arr].forEach((item, index) => {
+                item.style.width = item.innerHTML;
+                item.style.backgroundColor = colorList[index];
+                item.style.color = colorList[index];
+            })
+        }
         let record = {
             'init': init,
+            // 表格
+            'table': layui.table,
+            'element': layui.element,
             'laytpl': layui.laytpl,
             'carousel': layui.carousel,
             'bindEvent': bindEvent,
@@ -90,7 +228,9 @@
             "showMap": showMap,
             "getCityData": getCityData,
             "cityData": [],
-            "getProvinceData": getProvinceData
+            "getProvinceData": getProvinceData,
+            "renderTable": renderTable,
+            "showProvinceList": showProvinceList
         };
         record.init()
     }())

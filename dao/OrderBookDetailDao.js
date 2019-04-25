@@ -45,9 +45,10 @@ function queryOrderBookByIdOfCountByType (bookTypeName, endNum = 10, success) {
     connection.end()
 }
 
-function queryOrderBookByBookType (success) {
-    var querySql = "select bookId,bookTypeName,sum(bookCount) as total from order_book  group by bookId having bookTypeName = ? order by sum(bookCount) desc limit ?";
-    var params = [bookTypeName, endNum];
+// 按日期查询订单
+function queryOrderBookByMonth (month, success) {
+    var querySql = "select bookId,bookTypeName,sum(bookCount) as total,orderDate from order_book  group by bookId having DATE_FORMAT(orderDate,'%c') = ? order by sum(bookCount) desc";
+    var params = [month];
     var connection = dbutil.createConnection();
     connection.connect();
     connection.query(querySql, params, function (error, result) {
@@ -59,9 +60,9 @@ function queryOrderBookByBookType (success) {
     });
     connection.end()
 }
-
 module.exports = {
     "queryOrderBookDetailByOrderCode": queryOrderBookDetailByOrderCode,
     "queryOrderBookByIdOfCountAll": queryOrderBookByIdOfCountAll,
-    "queryOrderBookByIdOfCountByType": queryOrderBookByIdOfCountByType
+    "queryOrderBookByIdOfCountByType": queryOrderBookByIdOfCountByType,
+    "queryOrderBookByMonth":queryOrderBookByMonth
 };

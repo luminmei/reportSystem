@@ -24,4 +24,32 @@ function queryCustomerByPage(request, response) {
 }
 path.set("/api/queryCustomerByPage", queryCustomerByPage);
 
+function queryCustomerInfoOfTotal (request, response) {
+    var params = url.parse(request.url, true).query;
+    customerInfoDao.queryCustomerInfoOfTotal(params.date, function (result) {
+        response.writeHead(200, {"ContentType": "Aplication/json;charset:UTF-8"});
+        response.write(respUtil.writeResult("success", "查询成功", result[0]));
+        response.end()
+    })
+}
+path.set("/api/queryCustomerInfoOfTotal", queryCustomerInfoOfTotal);
+
+function queryCustomerByDay (request, response) {
+    var params = url.parse(request.url, true).query;
+    customerInfoDao.queryCustomerByDay(params.date, function (result) {
+        if (result.length > 0) {
+            response.header("Content-Type", "text/html; charset=utf-8");
+            response.writeHead(200);
+            response.write(respUtil.writeResult("success", "查询成功", result[0]));
+            response.end()
+        } else {
+            response.header("Content-Type", "text/html; charset=utf-8");
+            response.writeHead(200);
+            response.write(respUtil.writeResult("success", "查询成功", {total:0}));
+            response.end()
+        }
+
+    })
+}
+path.set("/api/queryCustomerByDay", queryCustomerByDay);
 module.exports.path = path;

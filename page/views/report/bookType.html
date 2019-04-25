@@ -10,6 +10,8 @@
   <style>
     .wrapper {
       padding:2%;
+        border: 5px solid #ffe600;
+        box-shadow: 0 0 18px #fcf16e;
     }
     #pie{
       width:500px;
@@ -43,7 +45,9 @@
           <button id="simpleBtn" class="layui-btn layui-btn-warm" style="position:absolute;right:88px;top:0;">实心</button>
           <button id="doughuntBtn" class="layui-btn layui-btn-danger" style="position:absolute;right:18px;top:0;">空心</button>
           <div class="layui-card">
-              <div class="layui-card-body" style="background:#2c343c">
+              <!--style="background:#2c343c"-->
+              <!--style="background:#ffffe0"-->
+              <div class="layui-card-body" style="background:#ffffe0">
                 <div class="wrapper">
                   <div id="tag"></div>
                   <div id="pie"></div>
@@ -62,49 +66,54 @@
   <script>
     (function () {
       function init () {
-        this.getBookTypeList()
-        this.queryBookCountOfBookType()
+        this.getBookTypeList();
+        this.queryBookCountOfBookType();
         this.bindEvent()
       }
       function bindEvent () {
-        var a = document.getElementById('roseTypeBtn')
-        var b = document.getElementById('simpleBtn')
-        var c = document.getElementById('doughuntBtn')
+        var a = document.getElementById('roseTypeBtn');
+        var b = document.getElementById('simpleBtn');
+        var c = document.getElementById('doughuntBtn');
         a.onclick = function () {
           pieRoseType(record.pie, record.pieData, '图书类型占比')
-        }
+        };
         b.onclick = function () {
           pieSimple(record.pie, record.pieData, '图书类型占比')
-        }
+        };
         c.onclick = function () {
           pieDoughunt(record.pie, record.pieData, '图书类型占比')
         }
       }
       // 获取多有的图书类型
       function getBookTypeList () {
+          colorList = [
+              '#C1232B','#B5C334','#FCCE10','#E87C25','#27727B',
+              '#FE8463','#9BCA63','#FAD860','#F3A43B','#60C0DD',
+              '#D7504B','#C6E579','#F4E001','#F0805A','#26C0C0'
+          ];
           $ajax({
             method: 'GET',
             url: '/api/queryAllBookTypeInfo'
           }).then((res) => {
-            var tagWrap = document.getElementById('tag')
+            var tagWrap = document.getElementById('tag');
             res.data.forEach(val => {
-              var dom = document.createElement('span')
-              dom.innerHTML = val.bookTypeName
-              dom.style.fontSize = randomSize()
-              dom.style.color = randomColor()
-              dom.style.position = 'absolute'
-              dom.style.left = Math.random()*80 + 5+ '%'
-              dom.style.top = Math.random()*90 + 5+ '%'
-              dom.style.cursor = 'pointer'
-              tagWrap.appendChild(dom)
+              var dom = document.createElement('span');
+              dom.innerHTML = val.bookTypeName;
+              dom.style.fontSize = randomSize();
+              dom.style.color = randomColor() || colorList[Math.floor(Math.random()*12)];
+              dom.style.position = 'absolute';
+              dom.style.left = Math.random()*80 + 5+ '%';
+              dom.style.top = Math.random()*90 + 5+ '%';
+              dom.style.cursor = 'pointer';
+              tagWrap.appendChild(dom);
               dom.onclick = function () {
                 // location.href = 'bookTypeDetail.html'
-                layer.open({
-                  title: val.bookTypeName,
-                  area: ['600px', '450px'],
-                  type: 2,
-                  content: 'bookTypeDetail.html'
-                })
+                // layer.open({
+                //   title: val.bookTypeName,
+                //   area: ['600px', '450px'],
+                //   type: 2,
+                //   content: 'bookTypeDetail.html'
+                // })
               }
             })
           }).catch(() => {})
@@ -117,9 +126,9 @@
           }).then((res) => {
             // 数据
             res.data.forEach((val) => {
-              var temp = {}
-              temp.name = val.bookTypeName
-              temp.value = val.total
+              var temp = {};
+              temp.name = val.bookTypeName;
+              temp.value = val.total;
               record.pieData.push(temp)
             });
             // 绘制饼状图

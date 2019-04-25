@@ -39,8 +39,8 @@ function queryOrderBookDetailByOrderCode (request, response) {
                 if (index == result.length -1) {
                     result.map(val => {
                         var temp = val;
-                        temp.book.bookPubDate = timeUtil.formatDate(val.book.bookPubDate);
-                        temp.book.bookStoreTime = timeUtil.formatDate(val.book.bookStoreTime);
+                        temp.book && (temp.book.bookPubDate = timeUtil.formatDate(val.book.bookPubDate));
+                        temp.book && (temp.book.bookStoreTime = timeUtil.formatDate(val.book.bookStoreTime));
                         return temp
                     });
                     response.writeHead(200, {"Content-Type": "application/json;charset=UTF-8"});
@@ -98,16 +98,6 @@ function queryOrderInfoByPayMethod (request, response) {
     })
 }
 path.set("/api/queryOrderInfoByPayMethod", queryOrderInfoByPayMethod);
-// 按支付方式进行查询 查询金额
-function queryOrderInfoByPayMethodOfMoney (request, response) {
-    orderDao.queryOrderInfoByPayMethodOfMoney(function (res) {
-        response.writeHead(200, {"Content-Type": "application/json;charset=UTF-8"});
-        response.write(respUtil.writeResult("success", "查询成功", res));
-        response.end();
-    })
-}
-path.set("/api/queryOrderInfoByPayMethodOfMoney", queryOrderInfoByPayMethodOfMoney);
-
 
 function queryOrderInfoByPostMethod (request, response) {
     orderDao.queryOrderInfoByPostMethod(function (res) {
@@ -136,4 +126,46 @@ function queryOrderInfoByRecProvince (request, response) {
 }
 path.set("/api/queryOrderInfoByRecProvince", queryOrderInfoByRecProvince);
 
+function queryOrderBookByMonth (request, response) {
+    var params = url.parse(request.url, true).query;
+    orderBookDetailDao.queryOrderBookByMonth(params.month,function (result) {
+        if (result.length > 0) {
+            result.forEach(val => {
+                val.book = null;
+            });
+            result.forEach((val, index) => {
+                bookInfoDao.queryBookDetailById(val.bookId, function (res) {
+                    val.book = res[0];
+                    if (index == result.length -1) {
+                        result.map(val => {
+                            var temp = val;
+                            temp.book && (temp.book.bookPubDate = timeUtil.formatDate(val.book.bookPubDate));
+                            temp.book && (temp.book.bookStoreTime = timeUtil.formatDate(val.book.bookStoreTime));
+                            return temp
+                        });
+                        response.writeHead(200, {"Content-Type": "application/json;charset=UTF-8"});
+                        response.write(respUtil.writeResult("success", "查询成功", result));
+                        response.end();
+                    }
+                })
+            });
+        } else {
+            response.writeHead(200, {"Content-Type": "application/json;charset=UTF-8"});
+            response.write(respUtil.writeResult("success", "查询成功", result));
+            response.end();
+        }
+    })
+}
+path.set("/api/queryOrderBookByMonth", queryOrderBookByMonth);
+
+
+function queryOrderByDay (request, response) {
+    var params = url.parse(request.url, true).query;
+    orderDao.queryOrderByDay(params.date, function (res) {
+        response.writeHead(200, {"Content-Type": "application/json;charset=UTF-8"});
+        response.write(respUtil.writeResult("success", "查询成功", res[0]));
+        response.end();
+    })
+}
+path.set("/api/queryOrderByDay", queryOrderByDay);
 module.exports.path = path;

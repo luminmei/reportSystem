@@ -5,7 +5,7 @@ function pieDoughunt(dom, pieData, titleText) {
       text: titleText,
       x: 'center',
       textStyle: {
-        color: 'orange'
+        color: '#c37e00'
       }
     },
     tooltip: {
