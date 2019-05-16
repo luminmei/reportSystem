@@ -1,4 +1,5 @@
 var dbutil = require("./DBUtil");
+var log = require("../log");
 // 根据图书编号查找图书
 function queryOrderBookDetailByOrderCode (orderCode, success) {
     var querySql = "select * from order_book where orderCode=?";
@@ -9,6 +10,7 @@ function queryOrderBookDetailByOrderCode (orderCode, success) {
         if (error == null) {
             success(result)
         } else {
+            log(error)
             console.log(error)
         }
     });
@@ -24,6 +26,7 @@ function queryOrderBookByIdOfCountAll (endNum = 10, success) {
         if (error == null) {
             success(result);
         } else {
+            log(error)
             console.log(error)
         }
     });
@@ -39,6 +42,7 @@ function queryOrderBookByIdOfCountByType (bookTypeName, endNum = 10, success) {
         if (error == null) {
             success(result);
         } else {
+            log(error)
             console.log(error)
         }
     });
@@ -55,6 +59,7 @@ function queryOrderBookByMonth (month, success) {
         if (error == null) {
             success(result);
         } else {
+            log(error)
             console.log(error)
         }
     });

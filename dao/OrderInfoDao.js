@@ -1,4 +1,5 @@
 var dbutil = require("./DBUtil");
+var log = require("../log");
 // 分页查找订单信息
 function queryOrderInfoByPage(page, pageSize, orderCode,  success) {
     var querySql = "";
@@ -17,6 +18,7 @@ function queryOrderInfoByPage(page, pageSize, orderCode,  success) {
         if (error == null) {
             success(result);
         } else {
+            log(error)
             console.log(error)
         }
     });
@@ -40,6 +42,7 @@ function queryOrderInfoOfTotal(orderCode ,success) {
         if (error == null) {
             success(result);
         } else {
+            log(error)
             console.log(error)
         }
     });
@@ -56,6 +59,7 @@ function queryOrderInfoByMonth (success) {
         if (error == null) {
             success(result);
         } else {
+            log(error)
             console.log(error)
         }
     });
@@ -71,6 +75,7 @@ function queryOrderInfoByPayMethod (success) {
         if (error == null) {
             success(result);
         } else {
+            log(error)
             console.log(error)
         }
     });
@@ -88,6 +93,7 @@ function queryOrderInfoByPostMethod (success) {
             // success(result);
             console.log(result)
         } else {
+            log(error)
             console.log(error)
         }
     });
@@ -96,8 +102,7 @@ function queryOrderInfoByPostMethod (success) {
 
 // 根据城市进行统计，统计出销售额
 function queryOrderInfoByRecCity(success) {
-    var querySql = "";
-    querySql = "select recCity,recProvince,sum(expressFee) as post,(sum(totalPrice) - sum(primeCost)) as base,sum(totalPrice) as sales,(sum(totalPrice) - sum(primeCost)) / sum(totalPrice) as rate from orderinfo  group by recCity order by sum(totalPrice) desc";
+    var querySql = "select recCity,recProvince,sum(expressFee) as post,(sum(totalPrice) - sum(primeCost)) as base,sum(totalPrice) as sales,(sum(totalPrice) - sum(primeCost)) / sum(totalPrice) as rate from orderinfo  group by recCity order by sum(totalPrice) desc";
     var params = [];
     var connection = dbutil.createConnection();
     connection.connect();
@@ -105,6 +110,7 @@ function queryOrderInfoByRecCity(success) {
         if (error == null) {
             success(result);
         } else {
+            log(error)
             console.log(error)
         }
     });
@@ -113,8 +119,7 @@ function queryOrderInfoByRecCity(success) {
 
 // 根据省份进行统计，统计出销售额
 function queryOrderInfoByRecProvince(success) {
-    var querySql = "";
-    querySql = "select recProvince,sum(expressFee) as post,(sum(totalPrice) - sum(primeCost)) as base,sum(totalPrice) as sales,(sum(totalPrice) - sum(primeCost)) / sum(totalPrice) as rate from orderinfo  group by recProvince   order by sum(totalPrice) desc";
+    var querySql = "select recProvince,sum(expressFee) as post,(sum(totalPrice) - sum(primeCost)) as base,sum(totalPrice) as sales,(sum(totalPrice) - sum(primeCost)) / sum(totalPrice) as rate from orderinfo  group by recProvince   order by sum(totalPrice) desc";
     var params = [];
     var connection = dbutil.createConnection();
     connection.connect();
@@ -122,6 +127,7 @@ function queryOrderInfoByRecProvince(success) {
         if (error == null) {
             success(result);
         } else {
+            log(error)
             console.log(error)
         }
     });
@@ -139,6 +145,7 @@ function queryOrderByDay (date, success) {
         if (error == null) {
             success(result);
         } else {
+            log(error)
             console.log(error)
         }
     });

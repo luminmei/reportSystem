@@ -1,5 +1,5 @@
 var dbutil = require("./DBUtil");
-
+var log = require("../log");
 function insertLogin(userid, username, password, ctime, success) {
     var insertSql = "insert into login (`userId`,`username`,`password`,`loginTime`) values (?,?,?,?)";
     var params = [userid, username, password, ctime];
@@ -9,6 +9,7 @@ function insertLogin(userid, username, password, ctime, success) {
         if (error == null) {
             success(result);
         } else {
+            log(error)
             console.log(error)
         }
     });
@@ -25,6 +26,7 @@ function queryLoginByDay (date, success) {
         if (error == null) {
             success(result);
         } else {
+            log(error)
             console.log(error)
         }
     });

@@ -4,7 +4,7 @@ var loader = require("./loader");
 var cookie = require("cookie-parser");
 
 var bosyParser = require("body-parser");
-
+var log = require("./log");
 var app = new express();
 app.use(bosyParser.urlencoded({extended: false}))
 app.use(cookie());
@@ -16,6 +16,7 @@ app.use(express.static("./page/"));
 app.get("/api/*", function (request, response, next) {
     if (request.cookies.id) {
         next();
+        log(request.url)
     } else {
         response.writeHead(200, {"Content-type": "text/html;charset=utf-8"}); // 返回中文时候设置
         response.write(JSON.stringify({status: 'error', msg: '未登录', data: null}));
@@ -46,4 +47,5 @@ app.post("/login", loader.get("/login"));
 
 app.listen(globalConfig.port, function () {
     console.log("服务已启动");
+    log("服务已启动")
 });

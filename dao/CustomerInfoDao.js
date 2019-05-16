@@ -1,8 +1,9 @@
 var dbutil = require("./DBUtil");
+var log = require("../log");
 // 分页查找客户信息
 function queryCustomerByPage(page, pageSize, customerName,  success) {
     var querySql = "";
-    var parmas = [];
+    var params = [];
     if (customerName) {
         querySql = "select * from customerinfo where customerName=? limit ?, ?";
         params = [customerName, page * pageSize, pageSize];
@@ -17,6 +18,7 @@ function queryCustomerByPage(page, pageSize, customerName,  success) {
         if (error == null) {
             success(result);
         } else {
+            log(error)
             console.log(error)
         }
     });
@@ -25,7 +27,7 @@ function queryCustomerByPage(page, pageSize, customerName,  success) {
 // 计算总的客户数量
 function queryCustomerInfoOfTotal(customerName ,success) {
     var querySql = "";
-    var parmas = [];
+    var params = [];
     if (customerName) {
         querySql = "select count(*) as total from customerinfo where customerName=?";
         params = [customerName];
@@ -40,6 +42,7 @@ function queryCustomerInfoOfTotal(customerName ,success) {
         if (error == null) {
             success(result);
         } else {
+            log(error)
             console.log(error)
         }
     });
@@ -56,6 +59,7 @@ function queryCustomerByDay (date, success) {
         if (error == null) {
             success(result);
         } else {
+            log(error)
             console.log(error)
         }
     });

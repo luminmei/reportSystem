@@ -1,9 +1,9 @@
 var dbutil = require("./DBUtil");
-
+var log = require("../log");
 // 分页查找图书信息
 function queryBookInfoByPage(page, pageSize,bookName, bookTypeName, success) {
     var querySql = "";
-    var parmas = [];
+    var params = [];
     if (bookName && bookTypeName) {
         querySql = `select * from bookinfo where bookName like '%${bookName}%' and bookTypeName=? limit ?, ?`;
         params = [bookTypeName, page * pageSize, pageSize];
@@ -24,6 +24,7 @@ function queryBookInfoByPage(page, pageSize,bookName, bookTypeName, success) {
         if (error == null) {
             success(result);
         } else {
+            log(error)
             console.log(error)
         }
     });
@@ -32,7 +33,7 @@ function queryBookInfoByPage(page, pageSize,bookName, bookTypeName, success) {
 // 计算总的图书数量
 function queryBookInfoOfTotal(bookName ,bookTypeName ,success) {
     var querySql = "";
-    var parmas = [];
+    var params = [];
     if (bookName && bookTypeName) {
         querySql = `select count(*) as total from bookinfo where bookName like '%${bookName}%' and bookTypeName=?`;
         params = [bookTypeName];
@@ -53,6 +54,7 @@ function queryBookInfoOfTotal(bookName ,bookTypeName ,success) {
         if (error == null) {
             success(result);
         } else {
+            log(error)
             console.log(error)
         }
     });
@@ -68,6 +70,7 @@ function queryBookDetailById(id, success) {
         if (error == null) {
             success(result)
         } else {
+            log(error)
             console.log(error)
         }
     });

@@ -1,5 +1,5 @@
 var dbutil = require("./DBUtil");
-
+var log = require("../log");
 function queryBookCountOfBookType (success) {
     var querySql = "select bookTypeId,count(bookId) as total from book_type_mapping group by bookTypeId";
     var params = [];
@@ -9,6 +9,7 @@ function queryBookCountOfBookType (success) {
         if (error == null) {
             success(result)
         } else {
+            log(error)
             console.log(error)
         }
     });

@@ -1,4 +1,5 @@
 var dbutil = require("./DBUtil");
+var log = require("../log");
 
 function queryAllBookTypeInfo (success) {
     var querySql = "select * from booktypeinfo";
@@ -9,6 +10,7 @@ function queryAllBookTypeInfo (success) {
         if (error == null) {
             success(result)
         } else {
+            log(error)
             console.log(error)
         }
     });
@@ -24,6 +26,7 @@ function queryBookTypeById (id, success) {
         if (error == null) {
             success(result)
         } else {
+            log(error)
             console.log(error)
         }
     });
